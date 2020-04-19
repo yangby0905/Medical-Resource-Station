@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
     <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/body.css">
+
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900">
+    
     <style>
-        body {
-            width: 1440px;
-            margin-right: auto;
-            margin-left: auto;
-        }
+
 
 
         .menu a {
@@ -25,9 +26,6 @@
             width: 100%;
             height: auto;
         }
-
-        
-
 
 
         .firstline,
@@ -162,6 +160,7 @@
         .searchicon {
             padding-top: 10px;
         }
+
     </style>
 </head>
 
@@ -170,39 +169,27 @@
     <div class="topright">
         <ul class="toprightleft">
             <li class="home">
-                
-                    <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px"alt="fa-home">
-               
-                
-                    <a href="index.jsp">Home</a>
-                
-                
+
+                <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
+                <a href="index.jsp">Home</a>
             </li>
             <li class="service">
-                
-                    <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px"alt="mb-book">
-               
-                    <a href="">Service</a>
-                
-                
+                <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px" alt="mb-book">
+                <a href="">Service</a>
             </li>
             <li class="usercenter">
-                
-                    <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px"alt="mb-user">
-                
-                    <a href="usercenter.jsp">User Center</a>
-                
-                
-            </li >
-            <li class="username">
-                <img class="s"src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="">User Name</a>
+                <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px" alt="mb-user">
+                <a href="usercenter.jsp">User Center</a>
             </li>
-            
+            <li class="username">
+                <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
+                <a href="login.jsp">Log In</a>
+            </li>
         </ul>
     </div>
     <div class="im">
-        <img src="images/2/1/v2_q6llpz.png" alt="Doctor2">
+        <img src="img/index/background/background.png" alt="background">
+
     </div>
     <div class="searchwrapper">
         <ul>
@@ -211,7 +198,9 @@
         <ul>
 
             <input class="searchinput" type="text" aria-label="Search" placeholder="Search">
+
             </form>
+
         </ul>
 
 
