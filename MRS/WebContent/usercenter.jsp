@@ -120,6 +120,10 @@
                 <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px" alt="mb-user">
                 <a href="usercenter.jsp">User Center</a>
             </li>
+            <li class="login">
+                <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
+                <a href="login.jsp">Log In</a>
+            </li>
             <li class="username">
                 <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
 
@@ -130,9 +134,6 @@
     					else
     						response.sendRedirect("login.jsp?error=session");
     				%>
-
-
-                <a href="login.jsp">Log In</a>
 
             </li>
         </ul>
