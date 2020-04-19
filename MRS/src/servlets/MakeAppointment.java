@@ -55,6 +55,7 @@ public class MakeAppointment extends HttpServlet {
 			String date = request.getParameter("date");
 			String time = request.getParameter("time");
 			String dat = date + " " + time;
+			String description = request.getParameter("description");
 			try {
 		    	Connection conn = DB.getConnection();
 				Statement stmt = conn.createStatement();
@@ -72,8 +73,8 @@ public class MakeAppointment extends HttpServlet {
 				if(rs.next()) {
 					doctorID = rs.getInt(1);
 				}
-				sql = "INSERT INTO appointment (patientID, doctorID, time, status)"
-						+ "VALUES('"+ patientID +"', '"+ doctorID +"', '"+ dat +"', 'To be confirmed')";
+				sql = "INSERT INTO appointment (patientID, doctorID, time, status, description)"
+						+ "VALUES('"+ patientID +"', '"+ doctorID +"', '"+ dat +"', 'To be confirmed', '"+ description +"')";
 				stmt.execute(sql);
 				request.getSession().removeAttribute("choice");
 				response.sendRedirect("index.jsp?error=remind");

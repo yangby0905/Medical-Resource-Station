@@ -233,7 +233,7 @@
             </li>
             <li>
                 <img src="img/index/menu/fa-medkit.svg" alt="fa-medkit">
-                <a href="">Prescription</a>
+                <a href="appointment.jsp">View My Appointments</a>
 
             </li>
             <li>

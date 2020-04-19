@@ -1,4 +1,6 @@
 <%@ page import="classes.User" %>
+<%@ page import="database.DB" %>
+<%@ page import="java.sql.*" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -44,7 +46,7 @@
             height:23px;
         }
         .list {
-            padding-bottom:140px;
+            padding-bottom:200px;
             border-radius:0px;
             border:1px solid grey;
             border-right-style: hidden;
@@ -104,43 +106,42 @@
             
         </ul>
     </div>
-    <!--The message about the doctor-->
+    <!--The details about the appointments-->
+    
+    	<% 
+    		String un = user.getUsername();
+        	try {
+        		Connection conn = DB.getConnection();
+    			Statement stmt = conn.createStatement();
+    			String sql = "SELECT appointment.ID, description, doctor.name, doctor.address, time, status FROM patient INNER JOIN appointment "
+    		+ "ON patient.ID = appointment.patientID INNER JOIN doctor ON appointment.doctorID = doctor.ID WHERE patient.username = '"+ un +"'";
+    			ResultSet rs = stmt.executeQuery(sql);
+    			while(rs.next()){
+    	%>
+    	
     <div class="list">
         <ul>
             <li><img src="image/appointment/Doctor1.png" alt="Doctor2" ></li>
             <li>
-                <a href="RecommendDoctor.jsp" ><p class="WordInList"><strong>Cold</strong></p></a>
-                <p ><small>Headache, sneezing, sore throat, cough, fever, etc.</small></p>
+                <p><small>Appointment ID Number: <%= rs.getInt(1) %></small></p>
+                <p><small>Appointment Purpose: <%= rs.getString(2) %></small></p>
+                <p><small>Doctor Name: <%= rs.getString(3) %></small></p>
+                <p><small>Doctor Address: <%= rs.getString(4) %></small></p>
+                <p><small>Appointment Time: <%= rs.getString(5) %></small></p>
+                <p><small>Appointment Status: <%= rs.getString(6) %></small></p>
             </li>
         </ul>
     </div>
-    <div class="list">
-        <ul>
-            <li><img src="image/appointment/Doctor1.png" alt="Doctor2" ></li>
-            <li>
-                <a href="RecommendDoctor.jsp" ><p class="WordInList"><strong>Stomachache</strong></p></a>
-                <p ><small>Stomachache, flatulence, gastroenteritis, etc.</small></p>
-            </li>
-        </ul>
-    </div>
-    <div class="list">
-        <ul>
-            <li><img src="image/appointment/Doctor1.png" alt="Doctor3" ></li>
-            <li>
-                <a href="RecommendDoctor.jsp" ><p class="WordInList"><strong>Pharmacy</strong></p></a>
-                <p ><small>Pregnancy, pregnancy physical examination, childbirth, etc.</small></p>
-            </li>
-        </ul>
-
-    </div>
-    <div class="list">
-        <ul>
-            <li><img src="image/appointment/Doctor2.png" alt="Doctor4" ></li>
-            <li>
-                <a href="RecommendDoctor.jsp" ><p class="WordInList"><strong>Specialist</strong></p></a>
-                <p ><small>Orthopedics, neurology, brain surgery, cardiothoracic surgery and other specialties.</small></p>
-            </li>
-        </ul>
-    </div>
+    
+		<%
+    			}
+    			stmt.close();
+    			conn.close();
+        	}
+        	catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+        %>
+        
 </body>
 </html>

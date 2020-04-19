@@ -174,6 +174,23 @@
 					</select>
 				</li>
 				<li>
+            		Purpose: 
+            		<select name="description">
+						<option value="cold">cold</option>
+						<option value="fever">fever</option>
+						<option value="headache">headache</option>
+						<option value="stomachache">stomachache</option>
+						<option value="eye problem">eye problem</option>
+						<option value="dental problem">dental problem</option>
+						<option value="hearing problem">hearing problem</option>
+						<option value="skin problem">skin problem</option>
+						<option value="pregnancy">pregnancy</option>
+						<option value="vaccine">vaccine</option>
+					</select>
+            	</li>
+            </ul>
+            <ul style="float:right; width:11em;">           	
+            	<li>
 					Time: 
 					<select name="time">
 						<option value="09:00-10:00">09:00-10:00</option>
@@ -186,8 +203,6 @@
 						<option value="16:00-17:00">16:00-17:00</option>
 					</select>
 				</li>
-            </ul>
-            <ul style="float:right; width:11em;">
                 <li>
                     <input type="submit" value="Confirm">
                 </li>
