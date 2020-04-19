@@ -1,10 +1,13 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
     <link rel="stylesheet" href="css/reset.css">
+
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/body.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -23,9 +26,6 @@
             width: 100%;
             height: auto;
         }
-
-
-
 
 
         .firstline,
@@ -72,6 +72,95 @@
             height: 800px;
 
         }
+
+        .footer {
+            flex: 1;
+            background-color: #2D2D2D;
+            width: auto;
+            height: 414px;
+        }
+
+        .information {
+            color: white;
+            padding-top: 85px;
+            float: left;
+            padding-left: 112px
+        }
+
+        .company {
+            font-size: 20px;
+        }
+
+        .contact {
+            padding-top: 26px;
+            font-size: 14px;
+        }
+
+        .contact>li {
+            padding-bottom: 10px;
+        }
+
+        .other {
+            float: right;
+        }
+
+        .other>ul {
+            float: left;
+            padding-top: 85px;
+            padding-right: 265px;
+        }
+
+        .introduce,
+        .servicescope {
+            color: #AEAEAE;
+            font-size: 16px;
+        }
+
+        .otherintro,
+        .otherservice {
+            padding-top: 36px;
+        }
+
+        .otherintro>li,
+        .otherservice>li {
+            padding-bottom: 18px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .searchwrapper {
+            float: right;
+            width: 379px;
+            height: 54px;
+            padding: 10px;
+            background-color: #EBEBEB;
+            border-radius: 30px;
+        }
+
+        .searchwrapper>ul {
+            float: left;
+
+        }
+
+        /*   .searchtable{
+            padding-top:10px;
+            line-height:40px;
+            BACKGROUND-COLOR: transparent;
+            height:40px;
+        } */
+        .searchinput {
+            BACKGROUND-COLOR: transparent;
+            border-style: hidden;
+            color: #2D2D2D;
+            padding-top: 15px;
+            font-size: 25px;
+            size: 40px;
+        }
+
+        .searchicon {
+            padding-top: 10px;
+        }
+
     </style>
 </head>
 
@@ -80,6 +169,7 @@
     <div class="topright">
         <ul class="toprightleft">
             <li class="home">
+
                 <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
                 <a href="index.jsp">Home</a>
             </li>
@@ -99,6 +189,7 @@
     </div>
     <div class="im">
         <img src="img/index/background/background.png" alt="background">
+
     </div>
     <div class="searchwrapper">
         <ul>
@@ -107,6 +198,8 @@
         <ul>
 
             <input class="searchinput" type="text" aria-label="Search" placeholder="Search">
+
+            </form>
 
         </ul>
 
