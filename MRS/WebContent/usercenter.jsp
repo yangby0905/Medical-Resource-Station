@@ -1,6 +1,4 @@
 <%@ page import="classes.User" %>
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -124,6 +122,7 @@
             </li>
             <li class="username">
                 <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
+
                 	<%
     					User user = (User)request.getSession().getAttribute("user");
     					if(user != null)
@@ -131,6 +130,7 @@
     					else
     						response.sendRedirect("login.jsp?error=session");
     				%>
+
 
                 <a href="login.jsp">Log In</a>
 

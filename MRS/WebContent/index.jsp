@@ -1,6 +1,4 @@
 <%@ page import="classes.User" %>
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -16,11 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900">
     
     <style>
-        body {
-            width: 1440px;
-            margin-right: auto;
-            margin-left: auto;
-        }
+
 
 
         .menu a {
@@ -32,9 +26,6 @@
             width: 100%;
             height: auto;
         }
-
-        
-
 
 
         .firstline,
@@ -169,6 +160,7 @@
         .searchicon {
             padding-top: 10px;
         }
+
     </style>
 </head>
 
@@ -177,30 +169,22 @@
     <div class="topright">
         <ul class="toprightleft">
             <li class="home">
-                
-                    <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px"alt="fa-home">
-               
-                
-                    <a href="index.jsp">Home</a>
-                
-                
+
+                <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
+                <a href="index.jsp">Home</a>
             </li>
             <li class="service">
-                
-                    <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px"alt="mb-book">
-               
-                    <a href="">Service</a>
-                
-                
+                <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px" alt="mb-book">
+                <a href="">Service</a>
             </li>
-            <li class="usercenter">
-                
-                    <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px"alt="mb-user">
-                
-                    <a href="usercenter.jsp">User Center</a>
-                
-                
+            <li class="usercenter">                
+                    <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px"alt="mb-user">                
+                    <a href="usercenter.jsp">User Center</a>                                
             </li >
+            <li class="login">
+                <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
+                <a href="login.jsp">Log In</a>
+            </li>
             <li class="username">
                 
                 	<%
@@ -210,11 +194,9 @@
     					else
     						response.sendRedirect("login.jsp?error=session");
     				%>
-                
-                <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="login.jsp">Log In</a>
+
             </li>
-            
+ 
         </ul>
     </div>
     <div class="im">
