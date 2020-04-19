@@ -78,6 +78,18 @@
     <div class="title1">
         <ul >
             <li><h1 style="color:grey"> Medical Resource Station</h1></li>
+            
+            
+            <li style="float:right;">
+                <p><img src="image/appointment/UserCenter.svg" alt="UserCenter" >
+                    <a href="usercenter.jsp"> UserCenter</a></p>
+            </li>
+
+            <li style="float:right;">
+                <p><img src="image/appointment/Home.svg" alt="Home" >
+                    <a href="index.jsp"> Home</a></p>
+            </li>
+            
             <li style="float:right;">
                 <p>  |  <img src="image/appointment/User.png" >
                 	<%
@@ -89,18 +101,7 @@
     				%>
                 </p>
             </li>
-            <li style="float:right;">
-                <p><img src="image/appointment/UserCenter.svg" alt="UserCenter" >
-                    <a href="usercenter.jsp"> UserCenter</a></p>
-            </li>
-            <li style="float:right;">
-                <p><img src="image/appointment/Service.svg" alt="Service" >
-                    <a href=""> Service</a></p>
-            </li>
-            <li style="float:right;">
-                <p><img src="image/appointment/Home.svg" alt="Home" >
-                    <a href="index.jsp"> Home</a></p>
-            </li>
+            
         </ul>
     </div>
     <!--The message about the doctor-->

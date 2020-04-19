@@ -160,6 +160,7 @@
             <a href="forgotpassword1.jsp"><img class="back" src="img/forgotpassword/back/back.png" alt="back"></a>
             
         </div>
+        <form method="post" action="PatientPassword">
         <div class="signup">
             <p class="signuptitle"> Change the password</p>
             <div class="signupinfo">
@@ -167,23 +168,18 @@
                     <ul>
                         Enter a new password
                     </ul>
-                    <input class="input" type="text">
+                    <input class="input" type="password" name="password">
                     <ul>
                         Confirm password
                     </ul>
-                    <input class="input" type="text">
-
-
-
-
+                    <input class="input" type="password" name="confirmation">
                 </div>
                 <ul class="button">
-                    <button class="next" onclick="{location.href='signupsuccess.jsp'}">
-                        NEXT
-                    </button>
+					<input type="submit" value="NEXT">
                 </ul>
             </div>
         </div>
+        </form>
         <div class="createaccount">
             <div>
                 <p class="new">
@@ -260,3 +256,13 @@
 </body>
 
 </html>
+
+<script> 
+	var error = '<%= request.getParameter("error") %>';
+	if(error == 'password'){
+		alert("Password cannot be empty !!!");
+	}
+	if(error == 'different'){
+		alert("Passwords not match !!!");
+	}
+</script>

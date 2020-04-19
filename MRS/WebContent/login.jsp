@@ -125,24 +125,7 @@
 <body>
     <div class="title">Medical Resource Station</div>
     <div class="topright">
-        <ul class="toprightleft">
-            <li class="home">
-                <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
-                <a href="index.jsp">Home</a>
-            </li>
-            <li class="service">
-                <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px" alt="mb-book">
-                <a href="">Service</a>
-            </li>
-            <li class="usercenter">
-                <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px" alt="mb-user">
-                <a href="usercenter.jsp">User Center</a>
-            </li>
-            <li class="username">
-                <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="login.jsp">Log In</a>
-            </li>
-        </ul>
+        
     </div>
     <div class="im">
         <img src="img/login/background/background.png" alt="background">
@@ -151,30 +134,29 @@
 
         <div class="signup">
             <p class="signuptitle"> Sign in to Medical Resource</p>
+            <form method="post" action="PatientLogin">
             <div class="signupinfo">
                 <div>
                     <ul>
-                        Username or Email
+                        Username
                     </ul>
-                    <input class="input" type="text">
+                    <input class="input" type="text" name="username">
 
                     <ul>
-                        Password
-                        <span class="forgot">
-                            <a href="forgotpassword.jsp">Forgot Password?</a>
-
-                        </span>
+                        Password                       
                     </ul>
-                    <input class="input" type="text">
-
+                    <input class="input" type="password" name="password">
+                    
+                    <span class="forgot" style="float:right;">
+                            <a href="forgotpassword.jsp">change & forgot password?</a>
+                    </span>
 
                 </div>
                 <ul class="button">
-                    <button class="login" onclick="{location.href='index.jsp'}">
-                        Log in
-                    </button>
+                    <input type="submit" value="Log in">
                 </ul>
             </div>
+            </form>
         </div>
         <div class="createaccount">
             <div>
@@ -252,3 +234,16 @@
 </body>
 
 </html>
+
+<script> 
+	var error = '<%= request.getParameter("error") %>';
+	if(error == 'username'){
+		alert("Invalid username !!!");
+	}
+	if(error == 'password'){
+		alert("Wrong password !!!");
+	}
+	if(error == 'session'){
+		alert("Session time out !!!");
+	}
+</script>

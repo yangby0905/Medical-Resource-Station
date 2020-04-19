@@ -12,21 +12,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.Doctor;
-import classes.User;
 import database.DB;
 
 /**
- * Servlet implementation class MakeAppointment
+ * Servlet implementation class PatientRegister
  */
-@WebServlet("/MakeAppointment")
-public class MakeAppointment extends HttpServlet {
+@WebServlet("/PatientRegister")
+public class PatientRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeAppointment() {
+    public PatientRegister() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,39 +42,36 @@ public class MakeAppointment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		User user = (User)request.getSession().getAttribute("user");
-		if(user == null) {
-			response.sendRedirect("login.jsp?error=session");
+		String un = request.getParameter("username");
+		String em = request.getParameter("email");
+		String pw = request.getParameter("password");
+		String pw_c = request.getParameter("confirmation");
+		if(un.contentEquals("")) {
+			response.sendRedirect("signup.jsp?error=username");
+		}
+		else if(em.contentEquals("")) {
+			response.sendRedirect("signup.jsp?error=email");
+		}
+		else if(pw.contentEquals("")) {
+			response.sendRedirect("signup.jsp?error=password");
+		}
+		else if(!pw.contentEquals(pw_c)) {
+			response.sendRedirect("signup.jsp?error=different");
 		}
 		else {
-			String u = user.getUsername();		
-			Doctor doctor = (Doctor)request.getSession().getAttribute("choice");
-			String d = doctor.getUsername();		
-			String date = request.getParameter("date");
-			String time = request.getParameter("time");
-			String dat = date + " " + time;
 			try {
-		    	Connection conn = DB.getConnection();
+				Connection conn = DB.getConnection();
 				Statement stmt = conn.createStatement();
-				String sql = "";
-				ResultSet rs = null;
-				int patientID = 0;
-				sql = "SELECT * FROM patient WHERE username = '"+ u +"'";
-				rs = stmt.executeQuery(sql);
+				String sql = "SELECT * FROM patient WHERE username = '"+ un +"'";
+				ResultSet rs = stmt.executeQuery(sql);
 				if(rs.next()) {
-					patientID = rs.getInt(1);
+					response.sendRedirect("signup.jsp?error=exist");
 				}
-				int doctorID = 0;
-				sql = "SELECT * FROM doctor WHERE username = '"+ d +"'";
-				rs = stmt.executeQuery(sql);
-				if(rs.next()) {
-					doctorID = rs.getInt(1);
+				else {
+					sql = "INSERT INTO patient (username, password, email) VALUES ('"+ un +"', '"+ pw +"', '"+ em +"')";
+					stmt.execute(sql);
+					request.getRequestDispatcher("signupsuccess.jsp").forward(request, response);
 				}
-				sql = "INSERT INTO appointment (patientID, doctorID, time, status)"
-						+ "VALUES('"+ patientID +"', '"+ doctorID +"', '"+ dat +"', 'To be confirmed')";
-				stmt.execute(sql);
-				request.getSession().removeAttribute("choice");
-				response.sendRedirect("index.jsp?error=remind");
 				stmt.close();
 				conn.close();
 			}

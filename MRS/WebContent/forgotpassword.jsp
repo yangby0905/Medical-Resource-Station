@@ -133,24 +133,7 @@
 <body>
     <div class="title">Medical Resource Station</div>
     <div class="topright">
-        <ul class="toprightleft">
-            <li class="home">
-                <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
-                <a href="index.jsp">Home</a>
-            </li>
-            <li class="service">
-                <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px" alt="mb-book">
-                <a href="">Service</a>
-            </li>
-            <li class="usercenter">
-                <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px" alt="mb-user">
-                <a href="usercenter.jsp">User Center</a>
-            </li>
-            <li class="username">
-                <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="login.jsp">Log In</a>
-            </li>
-        </ul>
+        
     </div>
     <div class="im">
         <img src="img/forgotpassword/background/background.png" alt="background">
@@ -160,27 +143,32 @@
             <a href="login.jsp"><img class="back" src="img/forgotpassword/back/back.png" alt="back"></a>
 
         </div>
+        
+        <form method="post" action="PatientVerify">
         <div class="signup">
-            <p class="signuptitle"> Find Password</p>
+            <p class="signuptitle"> Verify username and email</p>
             <div class="signupinfo">
                 <div>
+                
                     <ul>
-                        Username or Email
+                        Username
                     </ul>
-                    <input class="input" type="text">
+                    <input class="input" type="text" name="username">
 
-
-
-
-
+					<ul>
+                        Email
+                    </ul>
+                    <input class="input" type="text" name="email">
+              
                 </div>
-                <ul class="button">
-                    <button class="next" onclick="{location.href='forgotpassword1.jsp'}">
-                        NEXT
-                    </button>
-                </ul>
+                
             </div>
+            
+            <center><input type="submit" value="Click to verify username and email"></center>
+            
         </div>
+        </form>
+        
         <div class="createaccount">
             <div>
                 <p class="new">
@@ -257,3 +245,17 @@
 </body>
 
 </html>
+
+<script> 
+	var error = '<%= request.getParameter("error") %>';
+	if(error == 'username'){
+		alert("Username cannot be empty !!!");
+	}
+	if(error == 'email'){
+		alert("Email cannot be empty !!!");
+	}
+	if(error == 'fail'){
+		alert("No such credential !!!");
+	}
+
+</script>

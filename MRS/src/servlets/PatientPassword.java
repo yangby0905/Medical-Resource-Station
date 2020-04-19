@@ -12,21 +12,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.Doctor;
 import classes.User;
 import database.DB;
 
 /**
- * Servlet implementation class MakeAppointment
+ * Servlet implementation class PatientPassword
  */
-@WebServlet("/MakeAppointment")
-public class MakeAppointment extends HttpServlet {
+@WebServlet("/PatientPassword")
+public class PatientPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeAppointment() {
+    public PatientPassword() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,39 +48,28 @@ public class MakeAppointment extends HttpServlet {
 			response.sendRedirect("login.jsp?error=session");
 		}
 		else {
-			String u = user.getUsername();		
-			Doctor doctor = (Doctor)request.getSession().getAttribute("choice");
-			String d = doctor.getUsername();		
-			String date = request.getParameter("date");
-			String time = request.getParameter("time");
-			String dat = date + " " + time;
-			try {
-		    	Connection conn = DB.getConnection();
-				Statement stmt = conn.createStatement();
-				String sql = "";
-				ResultSet rs = null;
-				int patientID = 0;
-				sql = "SELECT * FROM patient WHERE username = '"+ u +"'";
-				rs = stmt.executeQuery(sql);
-				if(rs.next()) {
-					patientID = rs.getInt(1);
-				}
-				int doctorID = 0;
-				sql = "SELECT * FROM doctor WHERE username = '"+ d +"'";
-				rs = stmt.executeQuery(sql);
-				if(rs.next()) {
-					doctorID = rs.getInt(1);
-				}
-				sql = "INSERT INTO appointment (patientID, doctorID, time, status)"
-						+ "VALUES('"+ patientID +"', '"+ doctorID +"', '"+ dat +"', 'To be confirmed')";
-				stmt.execute(sql);
-				request.getSession().removeAttribute("choice");
-				response.sendRedirect("index.jsp?error=remind");
-				stmt.close();
-				conn.close();
+			String un = user.getUsername();
+			String pw = request.getParameter("password");
+			String pw_c = request.getParameter("confirmation");
+			if(pw.contentEquals("")) {
+				response.sendRedirect("changethepassword.jsp?error=password");
 			}
-			catch (SQLException | ClassNotFoundException e) {
-				e.printStackTrace();
+			else if(!pw.contentEquals(pw_c)) {
+				response.sendRedirect("changethepassword.jsp?error=different");
+			}
+			else {
+				try {
+					Connection conn = DB.getConnection();
+					Statement stmt = conn.createStatement();
+					String sql = "UPDATE patient SET password = '"+ pw +"' WHERE username = '"+ un +"'";
+					stmt.execute(sql);
+					request.getRequestDispatcher("signupsuccess.jsp").forward(request, response);
+					stmt.close();
+					conn.close();
+				}
+				catch (SQLException | ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
