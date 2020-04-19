@@ -1,7 +1,8 @@
 <%@ page import="classes.User" %>
 
-<!DOCTYPE html>
-<html lang="en">
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -10,6 +11,9 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/body.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900">
+
     <style>
         .information {
             height: 300px;
@@ -127,6 +131,9 @@
     					else
     						response.sendRedirect("login.jsp?error=session");
     				%>
+
+                <a href="login.jsp">Log In</a>
+
             </li>
         </ul>
     </div>
