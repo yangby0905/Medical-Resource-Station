@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +7,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900">
     <style>
         .information {
             height: 300px;
@@ -106,7 +106,7 @@
         <ul class="toprightleft">
             <li class="home">
                 <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
-                <a href="index.html">Home</a>
+                <a href="index.jsp">Home</a>
             </li>
             <li class="service">
                 <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px" alt="mb-book">
@@ -114,11 +114,11 @@
             </li>
             <li class="usercenter">
                 <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px" alt="mb-user">
-                <a href="usercenter.html">User Center</a>
+                <a href="usercenter.jsp">User Center</a>
             </li>
             <li class="username">
                 <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="">User Name</a>
+                <a href="login.jsp">Log In</a>
             </li>
         </ul>
     </div>

@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
     <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900">
+    
     <style>
-        body {
-            width: 1440px;
-            margin-right: auto;
-            margin-left: auto;
-        }
+
 
 
         .menu a {
@@ -26,7 +24,7 @@
             height: auto;
         }
 
-        
+
 
 
 
@@ -74,94 +72,6 @@
             height: 800px;
 
         }
-
-        .footer {
-            flex: 1;
-            background-color: #2D2D2D;
-            width: auto;
-            height: 414px;
-        }
-
-        .information {
-            color: white;
-            padding-top: 85px;
-            float: left;
-            padding-left: 112px
-        }
-
-        .company {
-            font-size: 20px;
-        }
-
-        .contact {
-            padding-top: 26px;
-            font-size: 14px;
-        }
-
-        .contact>li {
-            padding-bottom: 10px;
-        }
-
-        .other {
-            float: right;
-        }
-
-        .other>ul {
-            float: left;
-            padding-top: 85px;
-            padding-right: 265px;
-        }
-
-        .introduce,
-        .servicescope {
-            color: #AEAEAE;
-            font-size: 16px;
-        }
-
-        .otherintro,
-        .otherservice {
-            padding-top: 36px;
-        }
-
-        .otherintro>li,
-        .otherservice>li {
-            padding-bottom: 18px;
-            color: white;
-            font-size: 14px;
-        }
-
-        .searchwrapper {
-            float: right;
-            width: 379px;
-            height: 54px;
-            padding: 10px;
-            background-color: #EBEBEB;
-            border-radius: 30px;
-        }
-
-        .searchwrapper>ul {
-            float: left;
-
-        }
-
-        /*   .searchtable{
-            padding-top:10px;
-            line-height:40px;
-            BACKGROUND-COLOR: transparent;
-            height:40px;
-        } */
-        .searchinput {
-            BACKGROUND-COLOR: transparent;
-            border-style: hidden;
-            color: #2D2D2D;
-            padding-top: 15px;
-            font-size: 25px;
-            size: 40px;
-        }
-
-        .searchicon {
-            padding-top: 10px;
-        }
     </style>
 </head>
 
@@ -170,39 +80,25 @@
     <div class="topright">
         <ul class="toprightleft">
             <li class="home">
-                
-                    <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px"alt="fa-home">
-               
-                
-                    <a href="index.html">Home</a>
-                
-                
+                <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
+                <a href="index.jsp">Home</a>
             </li>
             <li class="service">
-                
-                    <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px"alt="mb-book">
-               
-                    <a href="">Service</a>
-                
-                
+                <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px" alt="mb-book">
+                <a href="">Service</a>
             </li>
             <li class="usercenter">
-                
-                    <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px"alt="mb-user">
-                
-                    <a href="usercenter.html">User Center</a>
-                
-                
-            </li >
-            <li class="username">
-                <img class="s"src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="">User Name</a>
+                <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px" alt="mb-user">
+                <a href="usercenter.jsp">User Center</a>
             </li>
-            
+            <li class="username">
+                <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
+                <a href="login.jsp">Log In</a>
+            </li>
         </ul>
     </div>
     <div class="im">
-        <img src="images/2/1/v2_q6llpz.png" alt="Doctor2">
+        <img src="img/index/background/background.png" alt="background">
     </div>
     <div class="searchwrapper">
         <ul>
@@ -211,7 +107,7 @@
         <ul>
 
             <input class="searchinput" type="text" aria-label="Search" placeholder="Search">
-            </form>
+
         </ul>
 
 
