@@ -1,3 +1,7 @@
+<%@ page import="classes.User" %>
+<%@ page import="database.DB" %>
+<%@ page import="java.sql.*" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: liyx1
@@ -111,84 +115,83 @@
         <ul >
             <li><h1 style="color:grey"> Medical Resource Station</h1></li>
             <li style="float:right;">
-                <p>  |  <img src="image/appointment/User.png" >Lucy</p>
+                <p>  |  <img src="image/appointment/User.png" >
+                	<%
+    					User user = (User)request.getSession().getAttribute("user");
+    					if(user != null)
+    						out.write(user.getUsername());
+    					else
+    						response.sendRedirect("login.jsp?error=session");
+    				%>
+                </p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/UserCenter.svg" alt="UserCenter" >
-                    <a href="" target="_blank" > UserCenter</a></p>
+                    <a href="usercenter.jsp"> UserCenter</a></p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/Service.svg" alt="Service" >
-                    <a href="" target="_blank" > Service</a></p>
+                    <a href=""> Service</a></p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/Home.svg" alt="Home" >
-                    <a href="" target="_blank" > Home</a></p>
+                    <a href="index.jsp"> Home</a></p>
             </li>
         </ul>
     </div>
     <%--    back_img    --%>
     <div class="back1">
         <ul>
-            <a href="appointment.jsp">
+            <a href="index.jsp">
                 <img src="image/appointment/back_img.png" alt="back_img" >
             </a>
         </ul>
     </div>
     <%--    Recommend Doctor    --%>
-    <div class="rd">
-        <h2>Recommend Doctor</h2>
-    </div>
-    <div class="list" style="margin-top: 0;">
-        <ul>
-            <li>
-                <img src="image/appointment/FemaleDoctor.png" alt="RDoctor1">
-            </li>
-            <li>
-                <p><strong>Amani </strong>Family doctor<br>Barnes Center at The Arch
-                    <br>Good at upper respiratory infection, asthma and other respiratory diseases</p>
-            </li>
-            <li class="button" >
-                <a href="DoctorHomePage.jsp" >Make an appointment</a>
-            </li>
-        </ul>
-    </div>
-    <div class="list">
-        <ul>
-            <li>
-                <img src="image/appointment/FemaleDoctor.png" alt="RDoctor1">
-            </li>
-            <li>
-                <p><strong>Amani </strong>Family doctor<br>Barnes Center at The Arch
-                    <br>Good at upper respiratory infection, asthma and other respiratory diseases</p>
-            </li>
-            <li class="button" style="float:right">
-                <a href="" >Make an appointment</a>
-            </li>
-        </ul>
-    </div>
-    <div class="list">
-        <ul>
-            <li>
-                <img src="image/appointment/FemaleDoctor.png" alt="RDoctor1">
-            </li>
-            <li>
-                <p><strong>Amani </strong>Family doctor<br>Barnes Center at The Arch
-                    <br>Good at upper respiratory infection, asthma and other respiratory diseases</p>
-            </li>
-            <li class="button" style="float:right">
-                <a href="" >Make an appointment</a>
-            </li>
-        </ul>
-    </div>
-    <div class="PageButton">
-        <ul>
-            <li style="background-color: dodgerblue"><a href="RecommendDoctor.jsp" style="color: white">1</a></li>
-            <li ><a href="RD_p2.jsp">2</a></li>
-            <li ><a href="RD_p3.jsp">3</a></li>
-            <li ><a href="RD_p4.jsp">4</a></li>
-            <li ><a href="RD_p5.jsp">5</a></li>
-        </ul>
-    </div>
+        
+        <form method="post" action="ChooseDoctor">
+        <% 
+        	try {
+        		Connection conn = DB.getConnection();
+    			Statement stmt = conn.createStatement();
+    			String sql = "SELECT * FROM doctor WHERE name IS NOT NULL AND address IS NOT NULL" 
+    					+ " AND phone IS NOT NULL AND email IS NOT NULL AND expertise IS NOT NULL";
+    			ResultSet rs = stmt.executeQuery(sql);
+    			while(rs.next()){
+    	%>
+    		<div class="list">
+    		<ul>
+	    		<li>
+	                <img src="image/appointment/FemaleDoctor.png" alt="RDoctor1">
+	            </li>
+	            <li>
+	                <p><strong><%= rs.getString(4) %></strong>
+	                Family doctor<br><%= rs.getString(7) %>
+	                <br>Good at <%= rs.getString(10) %></p>
+	            </li>
+	            <input style="float:right;" type="radio" name="choice" value="<%= rs.getInt(1) %>">
+	            <li style="float:right;">choose</li>
+	        	</ul>
+        	</div>
+        <%
+    			}
+    			stmt.close();
+    			conn.close();
+        	}
+        	catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+        %>
+        	<HR>
+        	<center><input type="submit" value="Continue"></center>
+        </form>         
+    
 </body>
 </html>
+
+<script> 
+	var error = '<%= request.getParameter("error") %>';
+	if(error == 'choice'){
+		alert("Please choose a doctor first !!!");
+	}
+</script>

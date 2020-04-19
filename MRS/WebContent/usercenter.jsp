@@ -1,3 +1,5 @@
+<%@ page import="classes.User" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,52 +120,73 @@
             </li>
             <li class="username">
                 <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="">User Name</a>
+                	<%
+    					User user = (User)request.getSession().getAttribute("user");
+    					if(user != null)
+    						out.write(user.getUsername());
+    					else
+    						response.sendRedirect("login.jsp?error=session");
+    				%>
             </li>
         </ul>
     </div>
+    
+  <form method="post" action="PatientUpdate">
     <div class="information">
         <div class="headnickname">
             <img class="headimg" src="img/usercenter/head/head.jpeg" alt="head">
-            <a class="nickname" href="">Lucy</a>
+            <%= user.getName() %>
         </div>
         <div class="word">
             <div>
-                <span class="personalinformation">
-                    Personal Information</span>
-
-                <HR class="h" align=center width=579 color=black SIZE=1>
-                <a class="edit" href="">edit</a>
-
-            </div>
-            <div>
-                <span class="pi username">User Name</span>
-
-                <a class="pia" href="">******@gmail.com</a>
+                <span class="personalinformation">Personal Information</span>
+				<br>
+                <HR class="h" align=center width=250 color=black SIZE=1>
+                <input class="edit" type="submit" value="edit">
+                <input type="reset" value="clear">
             </div>
             <div>
                 <span class="pi realname">Real Name</span>
-
-                <a class="pia" href="">Lucy</a>
+                <%= user.getName() %>
+                &nbsp &nbsp &nbsp &nbsp &nbsp
+                <input type="text" name="realname">
+            </div>
+            <div>
+                <span class="pi age">Age</span>
+                <%= user.getAge() %>
+                &nbsp &nbsp &nbsp &nbsp &nbsp
+                <input type="text" name="age">
             </div>
             <div>
                 <span class="pi gender">Gender</span>
-
-                <a class="pia" href="">Female</a>
-            </div>
-            <div>
-                <span class="pi birthday">Birthday</span>
-
-                <a class="pia" href="">1st,Jan,1990</a>
+                <%= user.getGender() %>
+                &nbsp &nbsp &nbsp &nbsp &nbsp
+                <input type="radio" name="gender" value="Male">Male
+                <input type="radio" name="gender" value="Female">Female
             </div>
             <div>
                 <span class="pi address">Address</span>
-
-                <a class="pia" href="">111 Test Ave, Syracuse</a>
+                <%= user.getAddress() %>
+                &nbsp &nbsp &nbsp &nbsp &nbsp
+                <input type="text" name="address">
             </div>
-
+            <div>
+                <span class="pi phone">Phone</span>
+                <%= user.getPhone() %>
+                &nbsp &nbsp &nbsp &nbsp &nbsp
+                <input type="text" name="phone">
+            </div>
+            <div>
+                <span class="pi email">Email</span>
+                <%= user.getEmail() %>
+                &nbsp &nbsp &nbsp &nbsp &nbsp
+                <input type="text" name="email">
+            </div>
         </div>
     </div>
+  </form>
+  <br><br><br><br><br><br><br><br><br><br>
+  <HR class="h" align=center width=500 color=black SIZE=1>
     <div class="icon">
         <div>
             <img src="img/usercenter/bottom/currentorder.png" alt="currentorder">
@@ -187,3 +210,10 @@
 </body>
 
 </html>
+
+<script> 
+	var error = '<%= request.getParameter("error") %>';
+	if(error == 'age'){
+		alert("Invalid age !!!");
+	}
+</script>

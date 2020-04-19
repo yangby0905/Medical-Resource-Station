@@ -1,3 +1,10 @@
+<%@ page import="classes.User" %>
+<%@ page import="classes.Doctor" %>
+<%@ page import="java.text.Format" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.Date" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: liyx1
@@ -94,19 +101,28 @@
         <ul >
             <li><h1 style="color:grey"> Medical Resource Station</h1></li>
             <li style="float:right;">
-                <p>  |  <img src="image/appointment/User.png" >Lucy</p>
+                <p>  |  <img src="image/appointment/User.png" >
+                	<%
+    					User user = (User)request.getSession().getAttribute("user");
+    					if(user != null)
+    						out.write(user.getUsername());
+    					else
+    						response.sendRedirect("login.jsp?error=session");
+    					Doctor doctor = (Doctor)request.getSession().getAttribute("choice");
+    				%>
+                </p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/UserCenter.svg" alt="UserCenter" >
-                    <a href="" target="_blank" > UserCenter</a></p>
+                    <a href="usercenter.jsp"> UserCenter</a></p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/Service.svg" alt="Service" >
-                    <a href="" target="_blank" > Service</a></p>
+                    <a href=""> Service</a></p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/Home.svg" alt="Home" >
-                    <a href="" target="_blank" > Home</a></p>
+                    <a href="index.jsp"> Home</a></p>
             </li>
         </ul>
     </div>
@@ -126,47 +142,60 @@
                      style="float: right;width:70px;height:70px;">
             </li>
             <li style="padding-left:160px">
-                <p><br><br><strong>Mike </strong><br>Specialist physician
-                    <br>Upstate University Hospital</p>
+                <p><br><br><strong><%= doctor.getName() %></strong><br>Specialist physician
+                    <br><%= doctor.getAddress() %></p>
             </li>
         </ul>
 <%--     title:Outpatient service time   --%>
         <ul>
             <li>
-                <pre><strong>Outpatient service time</strong>                               status                   <hr /></pre>
+                <pre><strong>Choose Appointment Time</strong><hr /></pre>
             </li>
         </ul>
 <%--    details    --%>
+	<form method="post" action="MakeAppointment">
         <ul>
             <ul style="float:left; width:21em;">
-                <li>
-                    <p><strong>1st May,2020 Morning </strong><br>$50.00</p>
-                </li>
-                <li>
-                    <p><strong>1st May,2020 Morning </strong><br>$50.00</p>
-                </li>
-                <li>
-                    <p><strong>1st May,2020 Morning </strong><br>$50.00</p>
-                </li>
-                <li>
-                    <p><strong>1st May,2020 Morning </strong><br>$50.00</p>
-                </li>
+				<li>
+					Date: 
+					<select name="date">
+					<%
+						Format f = new SimpleDateFormat("MM/dd/yyyy");					 
+			        	Date today = new Date();			 
+			        	Calendar c = Calendar.getInstance();
+			        	c.setTime(today);
+			        	for(int i = 1; i < 15; i++){
+			        		c.add(Calendar.DAY_OF_MONTH, 1);		 
+			        		Date day = c.getTime();
+			        		String choice = f.format(day);
+			        %>
+			        		<option value="<%= choice %>"><%= choice %></option>
+			        <%
+			        	}
+					%>
+					</select>
+				</li>
+				<li>
+					Time: 
+					<select name="time">
+						<option value="09:00-10:00">09:00-10:00</option>
+						<option value="10:00-11:00">10:00-11:00</option>
+						<option value="11:00-12:00">11:00-12:00</option>
+						<option value="12:00-13:00">12:00-13:00</option>
+						<option value="13:00-14:00">13:00-14:00</option>
+						<option value="14:00-15:00">14:00-15:00</option>
+						<option value="15:00-16:00">15:00-16:00</option>
+						<option value="16:00-17:00">16:00-17:00</option>
+					</select>
+				</li>
             </ul>
             <ul style="float:right; width:11em;">
-                <li class="button1">
-                    <a href="AppointmentDate.jsp" >Make an appointment</a>
-                </li>
-                <li class="button1">
-                    <a href="AppointmentDate.jsp" >Make an appointment</a>
-                </li>
-                <li class="button1">
-                    <a href="AppointmentDate.jsp" >Make an appointment</a>
-                </li>
-                <li class="button1">
-                    <a href="AppointmentDate.jsp" >Make an appointment</a>
+                <li>
+                    <input type="submit" value="Confirm">
                 </li>
             </ul>
         </ul>
+	</form>
     </div>
 </body>
 </html>

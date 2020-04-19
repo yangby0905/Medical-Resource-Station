@@ -1,3 +1,5 @@
+<%@ page import="classes.User" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: liyx1
@@ -77,19 +79,27 @@
         <ul >
             <li><h1 style="color:grey"> Medical Resource Station</h1></li>
             <li style="float:right;">
-                <p>  |  <img src="image/appointment/User.png" >Lucy</p>
+                <p>  |  <img src="image/appointment/User.png" >
+                	<%
+    					User user = (User)request.getSession().getAttribute("user");
+    					if(user != null)
+    						out.write(user.getUsername());
+    					else
+    						response.sendRedirect("login.jsp?error=session");
+    				%>
+                </p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/UserCenter.svg" alt="UserCenter" >
-                    <a href="" target="_blank" > UserCenter</a></p>
+                    <a href="usercenter.jsp"> UserCenter</a></p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/Service.svg" alt="Service" >
-                    <a href="" target="_blank" > Service</a></p>
+                    <a href=""> Service</a></p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/Home.svg" alt="Home" >
-                    <a href="" target="_blank" > Home</a></p>
+                    <a href="index.jsp"> Home</a></p>
             </li>
         </ul>
     </div>

@@ -1,3 +1,6 @@
+<%@ page import="classes.User" %>
+<%@ page import="classes.Doctor" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: liyx1
@@ -100,19 +103,28 @@
         <ul >
             <li><h1 style="color:grey"> Medical Resource Station</h1></li>
             <li style="float:right;">
-                <p>  |  <img src="image/appointment/User.png" >Lucy</p>
+                <p>  |  <img src="image/appointment/User.png" >
+                	<%
+    					User user = (User)request.getSession().getAttribute("user");
+    					if(user != null)
+    						out.write(user.getUsername());
+    					else
+    						response.sendRedirect("login.jsp?error=session");
+    					Doctor doctor = (Doctor)request.getSession().getAttribute("choice");
+    				%>
+                </p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/UserCenter.svg" alt="UserCenter" >
-                    <a href="" target="_blank" > UserCenter</a></p>
+                    <a href="usercenter.jsp"> UserCenter</a></p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/Service.svg" alt="Service" >
-                    <a href="" target="_blank" > Service</a></p>
+                    <a href=""> Service</a></p>
             </li>
             <li style="float:right;">
                 <p><img src="image/appointment/Home.svg" alt="Home" >
-                    <a href="" target="_blank" > Home</a></p>
+                    <a href="index.jsp"> Home</a></p>
             </li>
         </ul>
     </div>
@@ -132,24 +144,25 @@
                      style="float: right;width:70px;height:70px;">
             </li>
             <li style="padding-left:160px">
-                <p><br><br><strong>Mike </strong><br>Specialist physician
-                    <br>Upstate University Hospital</p>
+                <p><br><br><strong><%= doctor.getName() %></strong><br>Specialist physician
+                    <br><%= doctor.getAddress() %></p>
             </li>
         </ul>
         <ul>
             <li style="padding-left:160px">
-                <p><br><br><strong>Good at </strong>
-                    <br>Good at upper respiratory infection, asthma and other respiratory diseases</p>
+                <p><br><br><strong>Description </strong>
+                    <br>Good at <%= doctor.getExpertise() %></p>
             </li>
         </ul>
         <ul>
             <li style="padding-left:160px">
-                <p><br><br><strong>Record of education </strong>
-                    <br>M.d, Ph.D. NYU</p>
+                <p><br><br><strong>Contact Info </strong>
+                    <br>Phone: <%= doctor.getPhone() %>
+                    <br>Email: <%= doctor.getEmail() %></p>
             </li>
         </ul>
         <ul>
-            <li class="button1">
+            <li class="button1" style="float:right;">
                 <a href="AppointmentDate.jsp" >Make an appointment</a>
             </li>
         </ul>

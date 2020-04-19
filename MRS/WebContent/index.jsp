@@ -1,3 +1,5 @@
+<%@ page import="classes.User" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -196,7 +198,15 @@
             </li >
             <li class="username">
                 <img class="s"src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="">User Name</a>
+                
+                	<%
+    					User user = (User)request.getSession().getAttribute("user");
+    					if(user != null)
+    						out.write(user.getUsername());
+    					else
+    						response.sendRedirect("login.jsp?error=session");
+    				%>
+                
             </li>
             
         </ul>
@@ -208,11 +218,20 @@
         <ul>
             <img class="searchicon" src="img/index/search/md-search.svg" alt="search">
         </ul>
-        <ul>
-
-            <input class="searchinput" type="text" aria-label="Search" placeholder="Search">
-            </form>
+        <form method="post" action="SearchDoctor">
+        <ul>			
+            	<input class="searchinput" type="text" name="keyword" aria-label="Search" placeholder="Search Doctor">
+            	<br>
+            	Search by 
+            	<select name="criteria">
+            		<option value="name">name</option>
+            		<option value="address">address</option>
+            		<option value="expertise">expertise</option>
+            	</select>
+            	&nbsp &nbsp &nbsp
+            	<input type="submit" value="Search">            
         </ul>
+        </form>
 
 
     </div>
@@ -220,7 +239,7 @@
         <ul class="firstline">
             <li>
                 <img src="img/index/menu/fa-user-md.svg" alt="fa-user-md">
-                <a href="">Make an appointment</a>
+                <a href="RecommendDoctor.jsp">Make An Appointment</a>
 
             </li>
             <li>
@@ -247,7 +266,7 @@
             </li>
             <li>
                 <img src="img/index/menu/fa-question-circle.svg" alt="fa-question-circle">
-                <a href="">Customer service</a>
+                <a href="">Customer Service</a>
 
             </li>
         </ul>
@@ -321,3 +340,13 @@
 </body>
 
 </html>
+
+<script> 
+	var error = '<%= request.getParameter("error") %>';
+	if(error == 'remind'){
+		alert("Success ! Please wait for the doctor to confirm the appointment !!!");
+	}
+	if(error == 'search'){
+		alert("Please input keywords to search !!!")
+	}
+</script>
