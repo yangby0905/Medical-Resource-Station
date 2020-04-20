@@ -125,7 +125,12 @@
 <body>
     <div class="title">Medical Resource Station</div>
     <div class="topright">
-        
+        <ul class="toprightleft">
+            <li class="logout">
+                <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
+                <a href="login_.jsp">I am a doctor</a>
+            </li>            
+        </ul>
     </div>
     <div class="im">
         <img src="img/login/background/background.png" alt="background">

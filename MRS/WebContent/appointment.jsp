@@ -74,7 +74,7 @@
             align:top;
         }
     </style>
-    <title>RecommendDoctor</title>
+    <title>Appointments</title>
 </head>
 <body>
     <div class="title1">
@@ -122,14 +122,27 @@
     <div class="list">
         <ul>
             <li><img src="image/appointment/Doctor1.png" alt="Doctor2" ></li>
+            <form method="post" action="CancelAppointment">
             <li>
                 <p><small>Appointment ID Number: <%= rs.getInt(1) %></small></p>
                 <p><small>Appointment Purpose: <%= rs.getString(2) %></small></p>
                 <p><small>Doctor Name: <%= rs.getString(3) %></small></p>
                 <p><small>Doctor Address: <%= rs.getString(4) %></small></p>
                 <p><small>Appointment Time: <%= rs.getString(5) %></small></p>
-                <p><small>Appointment Status: <%= rs.getString(6) %></small></p>
+                <p>
+                	<small>Appointment Status: <%= rs.getString(6) %></small>
+                	&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                	<%
+                		if(rs.getString(6).contentEquals("To be confirmed")){
+                	%>
+	                	<input type="hidden" name="cancel" value="<%= rs.getInt(1) %>">
+	                	<input type="submit" value="Cancel">                	
+                	<%
+                		}
+                	%>                	
+                </p>            
             </li>
+            </form>
         </ul>
     </div>
     
