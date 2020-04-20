@@ -1,0 +1,36 @@
+.title {
+    color: #7D7B7B;
+    font-size: 36px;
+    display: inline-block;
+    font-weight: bolder;
+    padding-top: 38px;
+    padding-bottom: 28px;
+    padding-left: 174px;
+}
+
+.topright {
+    float: right;
+    padding-top: 31px;
+    
+}
+
+.topright li{
+     float: left; 
+ padding-right: 60px;
+    
+   
+
+}
+.s{
+  padding-right:50px;
+}
+
+
+.topright a {
+    color: black;
+    
+}
+
+a {
+    text-decoration: none;
+}
