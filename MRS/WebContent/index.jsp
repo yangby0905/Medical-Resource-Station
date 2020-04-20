@@ -207,6 +207,7 @@
         <ul>
             <img class="searchicon" src="img/index/search/md-search.svg" alt="search">
         </ul>
+<<<<<<< HEAD
         <form method="post" action="SearchDoctor">
         <ul>			
             	<input class="searchinput" type="text" name="keyword" aria-label="Search" placeholder="Search Doctor">
@@ -219,6 +220,14 @@
             	</select>
             	&nbsp &nbsp &nbsp
             	<input type="submit" value="Search">            
+=======
+        <ul>
+
+            <input class="searchinput" type="text" aria-label="Search" placeholder="Search">
+
+            </form>
+
+>>>>>>> d1056222961cfca8ec777435fdba30e0d8995117
         </ul>
         </form>
 
