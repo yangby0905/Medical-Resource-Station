@@ -1,10 +1,13 @@
+<%@ page import="classes.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
     <link rel="stylesheet" href="css/reset.css">
+
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/body.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -23,9 +26,6 @@
             width: 100%;
             height: auto;
         }
-
-
-
 
 
         .firstline,
@@ -72,6 +72,95 @@
             height: 800px;
 
         }
+
+        .footer {
+            flex: 1;
+            background-color: #2D2D2D;
+            width: auto;
+            height: 414px;
+        }
+
+        .information {
+            color: white;
+            padding-top: 85px;
+            float: left;
+            padding-left: 112px
+        }
+
+        .company {
+            font-size: 20px;
+        }
+
+        .contact {
+            padding-top: 26px;
+            font-size: 14px;
+        }
+
+        .contact>li {
+            padding-bottom: 10px;
+        }
+
+        .other {
+            float: right;
+        }
+
+        .other>ul {
+            float: left;
+            padding-top: 85px;
+            padding-right: 265px;
+        }
+
+        .introduce,
+        .servicescope {
+            color: #AEAEAE;
+            font-size: 16px;
+        }
+
+        .otherintro,
+        .otherservice {
+            padding-top: 36px;
+        }
+
+        .otherintro>li,
+        .otherservice>li {
+            padding-bottom: 18px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .searchwrapper {
+            float: right;
+            width: 379px;
+            height: 54px;
+            padding: 10px;
+            background-color: #EBEBEB;
+            border-radius: 30px;
+        }
+
+        .searchwrapper>ul {
+            float: left;
+
+        }
+
+        /*   .searchtable{
+            padding-top:10px;
+            line-height:40px;
+            BACKGROUND-COLOR: transparent;
+            height:40px;
+        } */
+        .searchinput {
+            BACKGROUND-COLOR: transparent;
+            border-style: hidden;
+            color: #2D2D2D;
+            padding-top: 15px;
+            font-size: 25px;
+            size: 40px;
+        }
+
+        .searchicon {
+            padding-top: 10px;
+        }
+
     </style>
 </head>
 
@@ -79,36 +168,59 @@
     <div class="title">Medical Resource Station</div>
     <div class="topright">
         <ul class="toprightleft">
+        
+        <li class="username">
+                
+                	<%
+    					User user = (User)request.getSession().getAttribute("user");
+    					if(user != null)
+    						out.write(user.getUsername());
+    					else
+    						response.sendRedirect("login.jsp?error=session");
+    				%>
+
+        </li>
+            
             <li class="home">
+
                 <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
                 <a href="index.jsp">Home</a>
             </li>
-            <li class="service">
-                <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px" alt="mb-book">
-                <a href="">Service</a>
-            </li>
-            <li class="usercenter">
-                <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px" alt="mb-user">
-                <a href="usercenter.jsp">User Center</a>
-            </li>
-            <li class="username">
+
+            <li class="usercenter">                
+                    <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px"alt="mb-user">                
+                    <a href="usercenter.jsp">User Center</a>                                
+            </li >
+            
+            <li class="logout">
                 <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="login.jsp">Log In</a>
+                <a href="login.jsp">Log out</a>
             </li>
+ 
         </ul>
     </div>
     <div class="im">
         <img src="img/index/background/background.png" alt="background">
+
     </div>
     <div class="searchwrapper">
         <ul>
             <img class="searchicon" src="img/index/search/md-search.svg" alt="search">
         </ul>
-        <ul>
-
-            <input class="searchinput" type="text" aria-label="Search" placeholder="Search">
-
+        <form method="post" action="SearchDoctor">
+        <ul>			
+            	<input class="searchinput" type="text" name="keyword" aria-label="Search" placeholder="Search Doctor">
+            	<br>
+            	Search by 
+            	<select name="criteria">
+            		<option value="name">name</option>
+            		<option value="address">address</option>
+            		<option value="expertise">expertise</option>
+            	</select>
+            	&nbsp &nbsp &nbsp
+            	<input type="submit" value="Search">            
         </ul>
+        </form>
 
 
     </div>
@@ -116,12 +228,12 @@
         <ul class="firstline">
             <li>
                 <img src="img/index/menu/fa-user-md.svg" alt="fa-user-md">
-                <a href="">Make an appointment</a>
+                <a href="RecommendDoctor.jsp">Make An Appointment</a>
 
             </li>
             <li>
                 <img src="img/index/menu/fa-medkit.svg" alt="fa-medkit">
-                <a href="">Prescription</a>
+                <a href="appointment.jsp">View My Appointments</a>
 
             </li>
             <li>
@@ -143,7 +255,7 @@
             </li>
             <li>
                 <img src="img/index/menu/fa-question-circle.svg" alt="fa-question-circle">
-                <a href="">Customer service</a>
+                <a href="">Customer Service</a>
 
             </li>
         </ul>
@@ -217,3 +329,13 @@
 </body>
 
 </html>
+
+<script> 
+	var error = '<%= request.getParameter("error") %>';
+	if(error == 'remind'){
+		alert("Success ! Please wait for the doctor to confirm the appointment !!!");
+	}
+	if(error == 'search'){
+		alert("Please input keywords to search !!!")
+	}
+</script>

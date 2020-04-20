@@ -84,24 +84,7 @@
     </script>
     <div class="title">Medical Resource Station</div>
     <div class="topright">
-        <ul class="toprightleft">
-            <li class="home">
-                <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
-                <a href="index.jsp">Home</a>
-            </li>
-            <li class="service">
-                <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px" alt="mb-book">
-                <a href="">Service</a>
-            </li>
-            <li class="usercenter">
-                <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px" alt="mb-user">
-                <a href="usercenter.jsp">User Center</a>
-            </li>
-            <li class="username">
-                <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="login.jsp">Log In</a>
-            </li>
-        </ul>
+        
     </div>
     <div class="im">
         <img src="img/signupsuccess/background/background.png" alt="background">
@@ -120,7 +103,7 @@
             </div>
             <div class="button">
                 <button class="login" onclick="{location.href='login.jsp'}">
-                    LOGIN
+                    Go To Login
                 </button>
             </div>
 

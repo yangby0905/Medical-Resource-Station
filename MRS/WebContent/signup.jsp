@@ -101,24 +101,7 @@
 <body>
     <div class="title">Medical Resource Station</div>
     <div class="topright">
-        <ul class="toprightleft">
-            <li class="home">
-                <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
-                <a href="index.jsp">Home</a>
-            </li>
-            <li class="service">
-                <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px" alt="mb-book">
-                <a href="">Service</a>
-            </li>
-            <li class="usercenter">
-                <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px" alt="mb-user">
-                <a href="usercenter.jsp">User Center</a>
-            </li>
-            <li class="username">
-                <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="login.jsp">Log In</a>
-            </li>
-        </ul>
+        
     </div>
     <div class="im">
         <img src="img/signup/background/background.png" alt="background">
@@ -128,33 +111,36 @@
         <div class="signup">
             <p class="signuptitle"> Create your account</p>
             <div class="signupinfo">
+            <form method="post" action="PatientRegister">
                 <div>
+                <br><br>
                     <ul>
                         Username
                         <span class="star">*</span>
                     </ul>
-                    <input class="input" type="text">
+                    <input class="input" type="text" name="username">
                     <ul>
                         Email Address <span class="star">*</span>
                     </ul>
-                    <input class="input" type="text">
+                    <input class="input" type="text" name="email">
                     <ul>
                         Password <span class="star">*</span>
                     </ul>
-                    <input class="input" type="text">
+                    <input class="input" type="password" name="password">
                     <ul>
                         Password Confirmation <span class="star">*</span>
                     </ul>
-                    <input class="input" type="text">
-
+                    <input class="input" type="password" name="confirmation">
                 </div>
-                <ul class="button">
-                    <button class="register" onclick="{location.href='signupsuccess.jsp'}">
-                        Register
-                    </button>
+                <br><br>
+                <ul class="button">                    
+                    <input type="button" value="Back" onclick="window.location.href='login.jsp'">
+                    &nbsp &nbsp &nbsp &nbsp
+                    <input type="submit" value="Register">
+                    &nbsp &nbsp &nbsp &nbsp
+                    <input type="reset" value="Reset">
                 </ul>
-
-
+			</form>
             </div>
         </div>
     </div>
@@ -222,3 +208,22 @@
 </body>
 
 </html>
+
+<script> 
+	var error = '<%= request.getParameter("error") %>';
+	if(error == 'username'){
+		alert("Username cannot be empty !!!");
+	}
+	if(error == 'email'){
+		alert("Email cannot be empty !!!");
+	}
+	if(error == 'password'){
+		alert("Password cannot be empty !!!");
+	}
+	if(error == 'different'){
+		alert("Passwords not match !!!");
+	}
+	if(error == 'exist'){
+		alert("Username already exists !!!");
+	}
+</script>
