@@ -1,0 +1,55 @@
+.footer {
+    flex: 1;
+    background-color: #2D2D2D;
+    width: auto;
+    height: 414px;
+}
+
+.information {
+    color: white;
+    padding-top: 85px;
+    float: left;
+    padding-left: 112px
+}
+
+.company {
+    font-size: 20px;
+}
+
+.contact {
+    padding-top: 26px;
+    font-size: 14px;
+}
+
+.contact>li {
+    padding-bottom: 10px;
+}
+
+.other {
+    float: right;
+}
+
+.other>ul {
+    float: left;
+    padding-top: 85px;
+    padding-right: 265px;
+}
+
+.introduce,
+.servicescope {
+    color: #AEAEAE;
+    font-size: 16px;
+}
+
+.otherintro,
+.otherservice {
+    padding-top: 36px;
+}
+
+.otherintro>li,
+.otherservice>li {
+    padding-bottom: 18px;
+    color: white;
+    font-size: 14px;
+}
+
