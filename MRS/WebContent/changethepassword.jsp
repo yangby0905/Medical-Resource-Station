@@ -157,7 +157,7 @@
     </div>
     <div class="blank">
         <div>
-            <a href="forgotpassword1.jsp"><img class="back" src="img/forgotpassword/back/back.png" alt="back"></a>
+            <a href="forgotpassword.jsp"><img class="back" src="img/forgotpassword/back/back.png" alt="back"></a>
             
         </div>
         <form method="post" action="PatientPassword">
