@@ -153,7 +153,7 @@
                     <input class="input" type="password" name="password">
                     
                     <span class="forgot" style="float:right;">
-                            <a href="forgotpassword.jsp">change & forgot password?</a>
+                            <a href="forgotpassword_doctor.jsp">change & forgot password?</a>
                     </span>
 
                 </div>
@@ -168,7 +168,7 @@
                 <p class="new">
                     New to Medical Resource?
                     <span class="cre">
-                        <a href="signup.jsp">Create An Account</a>
+                        <a href="signup_doctor.jsp">Create An Account</a>
 
                     </span>
                 </p>
