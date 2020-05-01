@@ -238,24 +238,24 @@
             </li>
             <li>
                 <img src="img/index/menu/md-local_hospital.svg" alt="md-local_hospital">
-                <a href="">Online Inquiry</a>
+                <a href="prescription.jsp">Prescription</a>
 
             </li>
         </ul>
         <ul class="secondline">
             <li>
                 <img src="img/index/menu/fa-file-o.svg" alt="fa-file-o">
-                <a href="">Medical Report</a>
+                <a href="medicalreport.jsp">Medical Report</a>
 
             </li>
             <li>
                 <img src="img/index/menu/fa-h-square.svg" alt="fa-h-square">
-                <a href="">Health Insurance</a>
+                <a href="healthinsurance.jsp">Health Insurance</a>
 
             </li>
             <li>
                 <img src="img/index/menu/fa-question-circle.svg" alt="fa-question-circle">
-                <a href="">Customer Service</a>
+                <a href="https://www.syracuse.edu/">Customer Service</a>
 
             </li>
         </ul>

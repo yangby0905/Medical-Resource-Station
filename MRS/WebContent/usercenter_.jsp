@@ -134,7 +134,7 @@
             
             <li class="logout">
                 <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="login.jsp_">Log out</a>
+                <a href="login_.jsp">Log out</a>
             </li>
             
         </ul>

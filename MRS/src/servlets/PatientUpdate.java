@@ -52,7 +52,7 @@ public class PatientUpdate extends HttpServlet {
 		
 		boolean flag = true;
 		String age = request.getParameter("age");
-		if(age != "") {
+		if(!age.trim().equals("")) {
 			char[] ag = age.toCharArray();
 			for(char ch : ag) {
 				if(!Character.isDigit(ch)) {
@@ -68,12 +68,12 @@ public class PatientUpdate extends HttpServlet {
 				String sql = "";
 				
 				String rn = request.getParameter("realname");
-				if(rn != "") {
+				if(!rn.trim().equals("")) {
 					sql = "UPDATE patient SET name = '"+ rn +"' WHERE username = '"+ un +"'";
 					stmt.execute(sql);
 				}
 				
-				if(age != "") {
+				if(!age.trim().equals("")) {
 					int a = Integer.parseInt(age);
 					sql = "UPDATE patient SET age = '"+ a +"' WHERE username = '"+ un +"'";
 					stmt.execute(sql);
@@ -86,19 +86,19 @@ public class PatientUpdate extends HttpServlet {
 				}
 				
 				String address = request.getParameter("address");
-				if(address != "") {
+				if(!address.trim().equals("")) {
 					sql = "UPDATE patient SET address = '"+ address +"' WHERE username = '"+ un +"'";
 					stmt.execute(sql);
 				}
 				
 				String phone = request.getParameter("phone");
-				if(phone != "") {
+				if(!phone.trim().equals("")) {
 					sql = "UPDATE patient SET phone = '"+ phone +"' WHERE username = '"+ un +"'";
 					stmt.execute(sql);
 				}
 				
 				String email = request.getParameter("email");
-				if(email != "") {
+				if(!email.trim().equals("")) {
 					sql = "UPDATE patient SET email = '"+ email +"' WHERE username = '"+ un +"'";
 					stmt.execute(sql);
 				}

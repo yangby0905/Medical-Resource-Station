@@ -138,7 +138,7 @@
     <div class="blank">
 
         <div class="signup">
-            <p class="signuptitle"> Sign in to Medical Resource</p>
+            <p class="signuptitle">DOCTOR sign in to Medical Resource</p>
             <form method="post" action="DoctorLogin">
             <div class="signupinfo">
                 <div>
