@@ -225,7 +225,7 @@
         <ul class="secondline">
         	<li>
                 <img src="img/index/menu/fa-file-o.svg" alt="fa-file-o">
-                <a href="">Medical Report</a>
+                <a href="medicalreport_.jsp">Medical Report</a>
 
             </li>
             <li>

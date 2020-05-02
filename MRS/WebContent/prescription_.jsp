@@ -217,7 +217,7 @@
     </div>
     <div class="blank">
         <div>
-            <a href="index.jsp"><img class="back" src="img/currentorder/back/back.png" alt="back"></a>
+            <a href="index_.jsp"><img class="back" src="img/currentorder/back/back.png" alt="back"></a>
         </div>
 
         <div class="currentorder">

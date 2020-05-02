@@ -1,10 +1,13 @@
+<%@ page import="classes.Doctor" %>
+<%@ page import="database.DB" %>
+<%@ page import="java.sql.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>medicalreport</title>
+    <title>prescription</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/body.css">
@@ -57,7 +60,7 @@
         }
 
         .infor {
-            height: 227px;
+            height: 150px;
             /*             border-style: solid;
             border-width: 1px;
             border-color: black; */
@@ -69,7 +72,7 @@
 
         .infoleft {
             height: 124px;
-            width: 600px;
+            width: 300px;
 
             float: left;
             padding: 0px;
@@ -87,20 +90,29 @@
             float: right;
         }
 
-        .testanddate {
-            padding-top: 76px;
+		.id {
+            padding-top: 10px;
             color: #101010;
-            font-size: 22px;
+            font-size: 18px;
         }
 
+        .date {
+            padding-top: 10px;
+            color: #101010;
+            font-size: 18px;
+        }
+
+		.name {
+            padding-top: 10px;
+            color: #101010;
+            font-size: 18px;
+        }
 
         .address {
             padding-top: 10px;
             color: #101010;
             font-size: 18px;
         }
-
-
 
         .viewmore {
             text-align: right;
@@ -161,13 +173,6 @@
             border-radius: 10px;
             box-shadow: 0 0 0 0;
         }
-        .test{
-            float:left;
-        }
-        .date{
-            display: inline-block;
-            margin-left:30px;
-        }
     </style>
 
 </head>
@@ -176,22 +181,35 @@
     <div class="title">Medical Resource Station</div>
     <div class="topright">
         <ul class="toprightleft">
+        
+        <li class="username">
+                
+                	<%
+    					Doctor doctor = (Doctor)request.getSession().getAttribute("doctor");
+    					if(doctor != null)
+    						out.write(doctor.getUsername());
+    					else
+    						response.sendRedirect("login_.jsp?error=session");
+    				%>
+
+        </li>
+            
             <li class="home">
+
                 <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
-                <a href="index.jsp">Home</a>
+                <a href="index_.jsp">Home</a>
             </li>
-            <li class="service">
-                <img src="img/index/topright/mb-book.svg" style="vertical-align:-5px" alt="mb-book">
-                <a href="">Service</a>
-            </li>
-            <li class="usercenter">
-                <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px" alt="mb-user">
-                <a href="usercenter.jsp">User Center</a>
-            </li>
-            <li class="username">
+
+            <li class="usercenter">                
+                    <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px"alt="mb-user">                
+                    <a href="usercenter_.jsp">User Center</a>                                
+            </li >
+            
+            <li class="logout">
                 <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="login.jsp">Log In</a>
+                <a href="login_.jsp">Log out</a>
             </li>
+ 
         </ul>
     </div>
     <div>
@@ -199,7 +217,7 @@
     </div>
     <div class="blank">
         <div>
-            <a href="index.jsp"><img class="back" src="img/currentorder/back/back.png" alt="back"></a>
+            <a href="index_.jsp"><img class="back" src="img/currentorder/back/back.png" alt="back"></a>
         </div>
 
         <div class="currentorder">
@@ -207,101 +225,61 @@
                 <div>
                     <p class="subtitle">
                         Medical Report
+                        <br><br><br>
                     </p>
 
                 </div>
 
-
-                <div class="infor">
-                    <div class="infoleft">
-                        <ul class="testanddate">
-                            <ul class="test">
-                                Routine blood
-                            </ul>
-                            <ul class="date">
-                                1st May, 2020
-                            </ul>
-
-                        </ul>
-                        <ul class="address">
-                            Barnes Center at The Arch
-                        </ul>
-                    </div>
-
-                    <div class="inforight">
-                        <ul class="viewmore">
-                            <button class="viewdetailbutton" onclick="{location.href='reportdetail.jsp'}">
-                                View Detail
-                            </button>
-
-
-                        </ul>
-                    </div>
-                </div>
+		<%
+    		String un = doctor.getUsername();
+        	try {
+        		Connection conn = DB.getConnection();
+    			Statement stmt = conn.createStatement();
+    			String sql = "SELECT time, patient.name, item, status FROM record INNER JOIN patient ON record.patientID = patient.ID INNER JOIN doctor ON record.doctorID = doctor.ID";
+    			ResultSet rs = stmt.executeQuery(sql);
+    			while(rs.next()){
+    	%>
+    	
+			<form method="post" action="ReportDetails">
                 <div>
                     <HR class="h" align=center width=1082px SIZE=1>
                 </div>
                 <div class="infor">
                     <div class="infoleft">
-                        <ul class="testanddate">
-                            <ul class="test">
-                                Routine blood
-                            </ul>
-                            <ul class="date">
-                                1st May, 2020
-                            </ul>
+                        <ul class="date">
+                            Time: <%= rs.getString(1) %>
+                        </ul>
+                        <ul class="name">
+                            Patient Name: <%= rs.getString(2) %>
+                        </ul>
                         <ul class="address">
-                            Barnes Center at The Arch
+                            Item: <%= rs.getString(3) %>
+                        </ul>
+                        <ul class="id">
+                            status: <%= rs.getString(4) %>
                         </ul>
                     </div>
 
                     <div class="inforight">
-                        <ul class="viewmore">
-                            <button class="viewdetailbutton" onclick="{location.href='reportdetail.jsp'}">
-                                View Detail
-                            </button>
-
+                        <ul class="viewmore">         
+                        	<input type="hidden" name="appointment_" value="<%= rs.getInt(1) %>">                   
+							<input type="submit" value="see detail">
                         </ul>
                     </div>
                 </div>
-                <div>
-                    <HR class="h" align=center width=1082px SIZE=1>
-                </div>
-                <div class="infor">
-                    <div class="infoleft">
-                        <ul class="testanddate">
-                            <ul class="test">
-                                Routine blood
-                            </ul>
-                            <ul class="date">
-                                1st May, 2020
-                            </ul>
-                        <ul class="address">
-                            Barnes Center at The Arch
-                        </ul>
-                    </div>
+			</form>
 
-                    <div class="inforight">
-                        <ul class="viewmore">
-                            <button class="viewdetailbutton" onclick="{location.href='reportdetail.jsp'}">
-                                View Detail
-                            </button>
-
-                        </ul>
-                    </div>
-                </div>
+		<%
+    			}
+    			stmt.close();
+    			conn.close();
+        	}
+        	catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+        %>
 
             </div>
-        </div>
-        <div class="pagination-bar">
-            <a href="#" class="">&lt;</a>
-            <a href="#" class="disabled">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-
-            <a href="#" class="page-next">&gt;</a>
         </div>
 
     </div>
