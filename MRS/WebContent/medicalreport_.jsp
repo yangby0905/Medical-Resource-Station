@@ -256,14 +256,14 @@
                             Item: <%= rs.getString(3) %>
                         </ul>
                         <ul class="id">
-                            status: <%= rs.getString(4) %>
+                            Status: <%= rs.getString(4) %>
                         </ul>
                     </div>
 
                     <div class="inforight">
                         <ul class="viewmore">         
                         	<input type="hidden" name="report_" value="<%= rs.getInt(5) %>">                   
-							<input type="submit" value="see detail">
+							<input type="submit" value="See Detail">
                         </ul>
                     </div>
                 </div>
