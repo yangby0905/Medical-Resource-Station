@@ -232,10 +232,8 @@
         	try {
         		Connection conn = DB.getConnection();
     			Statement stmt = conn.createStatement();
-    			System.out.println(ID);
     			String sql = "SELECT clinic.name, clinic.address, clinic.phone, clinic.email, patient.name, time, item, status, report FROM record INNER JOIN patient ON record.patientID = patient.ID INNER JOIN doctor ON record.doctorID = doctor.ID INNER JOIN clinic ON record.doctorID = clinic.doctorID WHERE record.ID = '"+ ID +"'";
     			ResultSet rs = stmt.executeQuery(sql);
-    			System.out.println(rs.getString(1));
     			//clinic.name, clinic.address, clinic.phone, clinic.email,
     	%>
     	            <div class="currentorderdetail">
@@ -283,7 +281,7 @@
                     <HR class="h" align=center width=1082px SIZE=1>
                 </div>
                 <div class="report">
-                    <img id="img" class="reportimg" src="img/reportdetail/report/report.png" alt="report"><%= rs.getBinaryStream(1) %></img>
+                    <img id="img" class="reportimg" src="img/reportdetail/report/report.png" alt="report">
                 </div>
         </div>
 		<%

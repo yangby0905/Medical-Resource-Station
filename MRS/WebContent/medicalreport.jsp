@@ -197,12 +197,12 @@
             <li class="home">
 
                 <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
-                <a href="index_.jsp">Home</a>
+                <a href="index.jsp">Home</a>
             </li>
 
             <li class="usercenter">                
                     <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px"alt="mb-user">                
-                    <a href="usercenter_.jsp">User Center</a>                                
+                    <a href="usercenter.jsp">User Center</a>                                
             </li >
             
             <li class="logout">
@@ -232,7 +232,6 @@
 
 		<%
 			String un = user.getUsername();
-			System.out.println(un);
         	try {
         		Connection conn = DB.getConnection();
     			Statement stmt = conn.createStatement();

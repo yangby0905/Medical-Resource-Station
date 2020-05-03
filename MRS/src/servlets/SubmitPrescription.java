@@ -62,14 +62,14 @@ public class SubmitPrescription extends HttpServlet {
 			Statement stmt = conn.createStatement();
 			
 			//test if the record exist
-			System.out.println(ID);
+//			System.out.println(ID);
 			String sql="SELECT * from record WHERE ID = '"+ ID + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 
 			
 			//update record
 			if (rs.next()){
-				System.out.print("True");
+//				System.out.print("True");
 				String sql2 = "SELECT ID, patientID, doctorID, time, status, description from appointment WHERE ID = '"+ ID + "'";
 				ResultSet rs2 = stmt.executeQuery(sql2);
 				int rID=rs2.getInt(1);
@@ -81,10 +81,10 @@ public class SubmitPrescription extends HttpServlet {
 				
 				sql = "UPDATE record SET patientID = '"+ rPID +"', doctorID = '"+ rDID+"', time = '"+ rTime+"', status = '"+ rStatus+"', item = '"+ rDescription+"' WHERE ID = '"+ ID +"'";
 				stmt.execute(sql);
-				System.out.print("Update complete");
+//				System.out.print("Update complete");
 				
 			}else {
-				System.out.print("false");
+//				System.out.print("false");
 				String sql2 = "SELECT ID, patientID, doctorID, time, status, description from appointment WHERE ID = '"+ ID + "'";
 				ResultSet rs2 = stmt.executeQuery(sql2);
 				int rID=rs2.getInt(1);
@@ -96,7 +96,7 @@ public class SubmitPrescription extends HttpServlet {
 				
 				sql = "INSERT INTO record (ID, patientID, doctorID, time, status, item, paymentAmount) VALUES ('"+ rID +"', '"+ rPID +"', '"+ rDID +"','"+rTime+"' , '"+rStatus+"', '"+rDescription+"', '20')";
 				stmt.execute(sql);
-				System.out.print("Insert complete");
+//				System.out.print("Insert complete");
 			}
 			
 			sql = "INSERT INTO prescription (appointmentID, content, time) VALUES ('"+ ID +"', '"+ content +"', '"+ time +"')";

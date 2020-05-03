@@ -197,17 +197,17 @@
             <li class="home">
 
                 <img src="img/index/topright/fa-home.svg" style="vertical-align:-8px" alt="fa-home">
-                <a href="index.jsp">Home</a>
+                <a href="index_.jsp">Home</a>
             </li>
 
             <li class="usercenter">                
                     <img src="img/index/topright/mb-user.svg" style="vertical-align:-5px"alt="mb-user">                
-                    <a href="usercenter.jsp">User Center</a>                                
+                    <a href="usercenter_.jsp">User Center</a>                                
             </li >
             
             <li class="logout">
                 <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="login.jsp">Log out</a>
+                <a href="login_.jsp">Log out</a>
             </li>
  
         </ul>
@@ -237,7 +237,6 @@
     			Statement stmt = conn.createStatement();
     			String sql = "SELECT time, patient.name, item, status, record.ID FROM record INNER JOIN patient ON record.patientID = patient.ID INNER JOIN doctor ON record.doctorID = doctor.ID WHERE doctor.username = '"+ un +"'";
     			ResultSet rs = stmt.executeQuery(sql);
-    			System.out.print(rs.getString(1));
     			while(rs.next()){
     	%>
     	
