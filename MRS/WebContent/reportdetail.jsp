@@ -216,6 +216,12 @@
         <HR class="titleh" align=center width=1082px SIZE=1>
     </div>
     <div class="blank">
+        		<%
+			String aID = request.getParameter("report");
+			int ID = 0;
+			if(aID != null)
+				ID = Integer.parseInt(aID);
+		%>	
         <div>
             <a href="medicalreport.jsp"><img class="back" src="img/currentorder/back/back.png" alt="back"></a>
         </div>
@@ -226,7 +232,8 @@
         	try {
         		Connection conn = DB.getConnection();
     			Statement stmt = conn.createStatement();
-    			String sql = "SELECT clinic.name, clinic.address, clinic.phone, clinic.email, patient.name, time, item, status, report FROM record INNER JOIN patient ON record.patientID = patient.ID INNER JOIN doctor ON record.doctorID = doctor.ID INNER JOIN clinic ON record.doctorID = clinic.doctorID";
+    			System.out.println(ID);System.out.println(ID);
+    			String sql = "SELECT clinic.name, clinic.address, clinic.phone, clinic.email, patient.name, time, item, status, report FROM record INNER JOIN patient ON record.patientID = patient.ID INNER JOIN doctor ON record.doctorID = doctor.ID INNER JOIN clinic ON record.doctorID = clinic.doctorID WHERE record.ID = '"+ ID +"'";
     			ResultSet rs = stmt.executeQuery(sql);
     			System.out.println(rs.getString(1));
     			//clinic.name, clinic.address, clinic.phone, clinic.email,
@@ -276,7 +283,7 @@
                     <HR class="h" align=center width=1082px SIZE=1>
                 </div>
                 <div class="report">
-                    <img id="img" class="reportimg" alt="report"><%= rs.getBinaryStream(1) %></img>
+                    <img id="img" class="reportimg" src="img/reportdetail/report/report.png" alt="report"><%= rs.getBinaryStream(1) %></img>
                 </div>
         </div>
 		<%

@@ -207,7 +207,7 @@
             
             <li class="logout">
                 <img class="s" src="img/index/topright/s.png" style="height:30px;vertical-align:-10px" alt="s">
-                <a href="login_.jsp">Log out</a>
+                <a href="login.jsp">Log out</a>
             </li>
  
         </ul>
@@ -236,7 +236,7 @@
         	try {
         		Connection conn = DB.getConnection();
     			Statement stmt = conn.createStatement();
-    			String sql = "SELECT time, patient.name, item, status FROM record INNER JOIN doctor ON record.doctorID = doctor.ID INNER JOIN patient ON record.patientID = patient.ID WHERE patient.username = '"+ un +"'";
+    			String sql = "SELECT time, patient.name, item, status, record.ID FROM record INNER JOIN doctor ON record.doctorID = doctor.ID INNER JOIN patient ON record.patientID = patient.ID WHERE patient.username = '"+ un +"'";
     			ResultSet rs = stmt.executeQuery(sql);
     			while(rs.next()){
     	%>
@@ -263,7 +263,7 @@
 
                     <div class="inforight">
                         <ul class="viewmore">         
-                        	<input type="hidden" name="appointment_" value="<%= rs.getInt(1) %>">                   
+                        	<input type="hidden" name="report" value="<%= rs.getInt(5) %>">                   
 							<input type="submit" value="see detail">
                         </ul>
                     </div>

@@ -60,8 +60,53 @@ public class SubmitPrescription extends HttpServlet {
     	try {
 			Connection conn = DB.getConnection();
 			Statement stmt = conn.createStatement();
-			String sql = "INSERT INTO prescription (appointmentID, content, time) VALUES ('"+ ID +"', '"+ content +"', '"+ time +"')";
+			
+			//test if the record exist
+			System.out.println(ID);
+			String sql="SELECT * from record WHERE ID = '"+ ID + "'";
+			ResultSet rs = stmt.executeQuery(sql);
+
+			
+			//update record
+			if (rs.next()){
+				System.out.print("True");
+				String sql2 = "SELECT ID, patientID, doctorID, time, status, description from appointment WHERE ID = '"+ ID + "'";
+				ResultSet rs2 = stmt.executeQuery(sql2);
+				int rID=rs2.getInt(1);
+				int rPID=rs2.getInt(2);
+				int rDID=rs2.getInt(3);
+				String rTime=rs2.getString(4);
+				String rStatus=rs2.getString(5);
+				String rDescription=rs2.getString(6);
+				
+				sql = "UPDATE record SET patientID = '"+ rPID +"', doctorID = '"+ rDID+"', time = '"+ rTime+"', status = '"+ rStatus+"', item = '"+ rDescription+"' WHERE ID = '"+ ID +"'";
+				stmt.execute(sql);
+				System.out.print("Update complete");
+				
+			}else {
+				System.out.print("false");
+				String sql2 = "SELECT ID, patientID, doctorID, time, status, description from appointment WHERE ID = '"+ ID + "'";
+				ResultSet rs2 = stmt.executeQuery(sql2);
+				int rID=rs2.getInt(1);
+				int rPID=rs2.getInt(2);
+				int rDID=rs2.getInt(3);
+				String rTime=rs2.getString(4);
+				String rStatus=rs2.getString(5);
+				String rDescription=rs2.getString(6);
+				
+				sql = "INSERT INTO record (ID, patientID, doctorID, time, status, item, paymentAmount) VALUES ('"+ rID +"', '"+ rPID +"', '"+ rDID +"','"+rTime+"' , '"+rStatus+"', '"+rDescription+"', '20')";
+				stmt.execute(sql);
+				System.out.print("Insert complete");
+			}
+			
+			sql = "INSERT INTO prescription (appointmentID, content, time) VALUES ('"+ ID +"', '"+ content +"', '"+ time +"')";
 			stmt.execute(sql);
+			
+			
+
+			
+			
+			
 			request.getRequestDispatcher("prescription_.jsp").forward(request, response);
 			stmt.close();
 			conn.close();
