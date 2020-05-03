@@ -1,4 +1,4 @@
-<%@ page import="classes.Doctor" %>
+<%@ page import="classes.User" %>
 <%@ page import="database.DB" %>
 <%@ page import="java.sql.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -185,11 +185,11 @@
         <li class="username">
                 
                 	<%
-    					Doctor doctor = (Doctor)request.getSession().getAttribute("doctor");
-    					if(doctor != null)
-    						out.write(doctor.getUsername());
+    					User user = (User)request.getSession().getAttribute("user");
+    					if(user != null)
+    						out.write(user.getUsername());
     					else
-    						response.sendRedirect("login_.jsp?error=session");
+    						response.sendRedirect("login.jsp?error=session");
     				%>
 
         </li>
@@ -217,7 +217,7 @@
     </div>
     <div class="blank">
         <div>
-            <a href="index_.jsp"><img class="back" src="img/currentorder/back/back.png" alt="back"></a>
+            <a href="index.jsp"><img class="back" src="img/currentorder/back/back.png" alt="back"></a>
         </div>
 
         <div class="currentorder">
@@ -231,16 +231,17 @@
                 </div>
 
 		<%
-    		String un = doctor.getUsername();
+			String un = user.getUsername();
+			System.out.println(un);
         	try {
         		Connection conn = DB.getConnection();
     			Statement stmt = conn.createStatement();
-    			String sql = "SELECT time, patient.name, item, status FROM record INNER JOIN patient ON record.patientID = patient.ID INNER JOIN doctor ON record.doctorID = doctor.ID";
+    			String sql = "SELECT time, patient.name, item, status FROM record INNER JOIN doctor ON record.doctorID = doctor.ID INNER JOIN patient ON record.patientID = patient.ID WHERE patient.username = '"+ un +"'";
     			ResultSet rs = stmt.executeQuery(sql);
     			while(rs.next()){
     	%>
     	
-			<form method="post" action="ReportDetails">
+			<form method="post" action="ViewReport">
                 <div>
                     <HR class="h" align=center width=1082px SIZE=1>
                 </div>
