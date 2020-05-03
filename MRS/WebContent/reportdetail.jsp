@@ -232,9 +232,9 @@
         	try {
         		Connection conn = DB.getConnection();
     			Statement stmt = conn.createStatement();
-    			String sql = "SELECT clinic.name, clinic.address, clinic.phone, clinic.email, patient.name, time, item, status, report FROM record INNER JOIN patient ON record.patientID = patient.ID INNER JOIN doctor ON record.doctorID = doctor.ID INNER JOIN clinic ON record.doctorID = clinic.doctorID WHERE record.ID = '"+ ID +"'";
+    			String sql = "SELECT clinic.name, clinic.address, clinic.phone, clinic.email, patient.name, time, item, status FROM record INNER JOIN patient ON record.patientID = patient.ID INNER JOIN doctor ON record.doctorID = doctor.ID INNER JOIN clinic ON record.doctorID = clinic.doctorID WHERE record.ID = '"+ ID +"'";
     			ResultSet rs = stmt.executeQuery(sql);
-    			//clinic.name, clinic.address, clinic.phone, clinic.email,
+    			while(rs.next()){
     	%>
     	            <div class="currentorderdetail">
                 <div>
@@ -277,6 +277,9 @@
                     </div>
 
                 </div>
+            <%
+    			}
+            %>
                 <div>
                     <HR class="h" align=center width=1082px SIZE=1>
                 </div>
